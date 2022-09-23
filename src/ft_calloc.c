@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 17:12:02 by emadriga          #+#    #+#             */
-/*   Updated: 2021/05/30 22:46:00 by emadriga         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:15:41 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*out;
-	size_t	len;
+	void			*out;
+	const size_t	len = (count * size);
 
-	len = count * size;
+	if (len / size != count)
+		return (NULL);
 	out = malloc(len);
 	if (!out)
-		return (0);
+		return (NULL);
 	ft_bzero(out, len);
 	return (out);
 }
