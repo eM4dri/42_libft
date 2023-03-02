@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:50:03 by emadriga          #+#    #+#             */
-/*   Updated: 2022/01/05 19:54:00 by emadriga         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:12:13 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@
 */
 char	*ft_strjoin_freedouble(char *s1, char *s2)
 {
-	char	*join;
-	size_t	len;
+	const size_t	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	char			*join;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	join = ft_calloc(sizeof(char), len);
 	if (!join)
 		return (0);

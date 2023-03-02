@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 11:54:30 by emadriga          #+#    #+#             */
-/*   Updated: 2021/11/13 20:55:36 by emadriga         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:16:28 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@
 char	*ft_strreplaceat(const char *str, char const *oldset, \
 		char const *newset, size_t index)
 {
-	char	*out;
-	char	*tmp;
-	char	*strnstr;
+	const size_t	oldset_len = ft_strlen(oldset);
+	char			*out;
+	char			*tmp;
+	char			*strnstr;
 
 	if (!str || !oldset || !newset)
 		return (NULL);
@@ -35,12 +36,12 @@ char	*ft_strreplaceat(const char *str, char const *oldset, \
 	{
 		tmp = (char *)str;
 		strnstr = &tmp[index];
-		if (!ft_strncmp(strnstr, oldset, ft_strlen(oldset)))
+		if (!ft_strncmp(strnstr, oldset, oldset_len))
 		{
 			out = ft_substr(tmp, 0, strnstr - tmp);
 			tmp = ft_strjoin(out, newset);
 			free(out);
-			out = ft_strjoin(tmp, strnstr + ft_strlen(oldset));
+			out = ft_strjoin(tmp, strnstr + oldset_len);
 			free(tmp);
 			tmp = out;
 			strnstr = ft_strnstr(tmp, oldset, ft_strlen(tmp));

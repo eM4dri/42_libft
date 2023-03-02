@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 18:55:38 by emadriga          #+#    #+#             */
-/*   Updated: 2021/10/03 19:49:23 by emadriga         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:21:27 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 static char	*ft_strjoin_free(char *s1, char const *s2)
 {
-	char	*join;
-	size_t	len;
+	const size_t	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	char			*join;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	join = ft_calloc(sizeof(char), len);
 	if (!join)
 		return (0);

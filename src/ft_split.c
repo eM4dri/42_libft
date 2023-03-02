@@ -6,71 +6,75 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 22:33:25 by emadriga          #+#    #+#             */
-/*   Updated: 2021/06/05 18:55:50 by emadriga         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:08:44 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-typedef struct s_utils
+static size_t	count_words(char const *s, char c)
 {
-	size_t	tot_words;
-	size_t	len_word;
-	size_t	index;
-}t_utils;
+	size_t	total_words;
 
-static size_t	ft_word_counter(char const *s, char c)
-{
-	size_t	tot;
-
-	tot = 0;
+	total_words = 0;
 	while (*s != '\0')
 	{
 		while (*s == c)
 			s++;
 		if (*s != c && *s != '\0')
 		{
-			tot ++;
+			total_words ++;
 			while (*s != c && *s != '\0')
 				s++;
 		}
 	}
-	return (tot);
+	return (total_words);
 }
 
-static void	*freematrix(char **matrix, size_t i)
+static char	**freematrix(char **matrix, size_t index)
 {
-	while (i--)
-		free(matrix[i]);
+	while (index--)
+		free(matrix[index]);
 	free(matrix);
 	return (NULL);
 }
 
+static char	**get_words(char const *s, char c, char **out, \
+						const size_t	total_words)
+{
+	size_t	index;
+	size_t	len_word;
+
+	index = 0;
+	while (*s != '\0' && index < total_words)
+	{
+		if (*s == c)
+			s++;
+		else
+		{
+			len_word = 0;
+			while (s[len_word] != c && s[len_word] != '\0')
+				len_word++;
+			out[index] = ft_substr(s, 0, len_word);
+			if (!out[index])
+				return (freematrix(out, index));
+			s = s + len_word;
+			index++;
+		}
+	}
+	return (out);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	char	**out;
-	t_utils	u;
+	const size_t	total_words = count_words(s, c);
+	char			**out;
 
 	if (!s)
 		return (NULL);
-	u.tot_words = ft_word_counter(s, c);
-	out = ft_calloc(sizeof(char *), u.tot_words + 1);
+	out = ft_calloc(sizeof(char *), total_words + 1);
 	if (!out)
 		return (NULL);
-	u.index = 0;
-	while (u.tot_words--)
-	{
-		while (*s == c)
-			s++;
-		u.len_word = 0;
-		while (s[u.len_word] != c && s[u.len_word] != '\0')
-			u.len_word++;
-		out[u.index] = ft_calloc(sizeof(char), u.len_word + 1);
-		if (!out[u.index])
-			freematrix(out, u.index);
-		ft_memmove(out[u.index++], s, u.len_word);
-		s = s + u.len_word;
-	}
-	out[u.index] = 0;
-	return (out);
+	out[total_words] = 0;
+	return (get_words(s, c, out, total_words));
 }

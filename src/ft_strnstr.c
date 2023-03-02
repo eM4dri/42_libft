@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 17:04:33 by emadriga          #+#    #+#             */
-/*   Updated: 2021/06/04 18:46:47 by emadriga         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:14:28 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	len_needle;
+	const size_t	len_needle = ft_strlen(needle);
 
 	if (!*needle)
 		return ((char *)haystack);
-	len_needle = ft_strlen(needle);
 	while (*haystack != '\0' && len-- > 0)
 	{
 		if (*haystack == *needle)

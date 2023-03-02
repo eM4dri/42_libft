@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 17:10:52 by emadriga          #+#    #+#             */
-/*   Updated: 2021/05/29 12:31:26 by emadriga         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:22:23 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char	*copy;
-	size_t	len_s1;
+	const size_t	len_s1 = ft_strlen(s1) + 1;
+	char			*copy;
 
-	len_s1 = ft_strlen(s1) + 1;
 	copy = malloc(sizeof(char) * len_s1);
 	if (!copy)
 		return (0);

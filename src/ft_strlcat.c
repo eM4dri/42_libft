@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 17:01:18 by emadriga          #+#    #+#             */
-/*   Updated: 2021/06/06 20:30:52 by emadriga         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:13:11 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
-	size_t	dst_len;
-	size_t	src_len;
+	const size_t	dst_len = ft_strlen(dst);
+	const size_t	src_len = ft_strlen(src);
+	size_t			i;
 
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
 	if (dst_len < dstsize)
 	{
 		i = 0;
